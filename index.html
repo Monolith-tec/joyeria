@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA & LUXE | Haute Joaillerie & Arte Maximalista</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Cinzel Decorative, Cormorant Garamond, Syne & Italiana -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Italiana&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-black': '#050607',
+                        'luxury-obsidian': '#0B0D0F',
+                        'luxury-velvet': '#12161A',
+                        'gold-glow': '#E6C687',
+                        'gold-accent': '#D4AF37',
+                        'gold-light': '#F3E5AB',
+                        'emerald-deep': '#062B1E',
+                        'emerald-glow': '#0D5C43',
+                        'emerald-bright': '#128360',
+                        'ruby-accent': '#800A1D',
+                        'champagne': '#FAF3E0',
+                        'pearl': '#F7F5F0'
+                    },
+                    fontFamily: {
+                        display: ['Cinzel Decorative', 'serif'],
+                        editorial: ['Cormorant Garamond', 'serif'],
+                        italiana: ['Italiana', 'serif'],
+                        sans: ['Syne', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #D4AF37 0%, #FAF3E0 50%, #AA771C 100%)',
+                        'emerald-gradient': 'linear-gradient(135deg, #062B1E 0%, #0D5C43 50%, #051912 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --cursor-x: 50vw;
+            --cursor-y: 50vh;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background-color: #050607;
+            color: #FAF3E0;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* Mouse Spotlight Dynamic Light */
+        .mouse-light {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            background: radial-gradient(
+                700px circle at var(--cursor-x) var(--cursor-y),
+                rgba(18, 131, 96, 0.22),
+                rgba(212, 175, 55, 0.12) 35%,
+                rgba(5, 6, 7, 0) 75%
+            );
+            transition: background 0.05s ease-out;
+        }
+
+        /* Custom Dynamic Cursor Glow Pointer */
+        .cursor-pointer-glow {
+            position: fixed;
+            top: var(--cursor-y);
+            left: var(--cursor-x);
+            width: 32px;
+            height: 32px;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(230, 198, 135, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 0 15px rgba(18, 131, 96, 0.5), inset 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        body:active .cursor-pointer-glow {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(212, 175, 55, 0.15);
+        }
+
+        /* Gold Foil Shimmer Text */
+        .text-gold-shimmer {
+            background: linear-gradient(120deg, #D4AF37 0%, #FFF5D1 25%, #AA771C 50%, #FFF5D1 75%, #D4AF37 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 6s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Marquee Continuous Banner */
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Luxury Glassmorphism & Gold Borders */
+        .glass-luxury {
+            background: rgba(11, 13, 15, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-hover {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card-hover:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px -10px rgba(18, 131, 96, 0.3), 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050607;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0D5C43;
+            border-radius: 99px;
+            border: 1px solid #D4AF37;
+        }
+
+        /* Unconventional Decorative Elements */
+        .editorial-rotate {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        /* Pulse Gold Ring */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 15px rgba(18, 131, 96, 0.3); }
+            50% { box-shadow: 0 0 45px rgba(212, 175, 55, 0.7), inset 0 0 30px rgba(18, 131, 96, 0.6); }
+        }
+
+        .glow-pulse {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="relative selection:bg-gold-accent selection:text-luxury-black">
+
+    <!-- Interactive Dynamic Mouse Spotlight Overlay -->
+    <div class="mouse-light" id="mouseLight"></div>
+    <div class="cursor-pointer-glow hidden md:block" id="cursorHalo"></div>
+
+    <!-- Notification Toast System -->
+    <div id="toastContainer" class="fixed bottom-8 right-8 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Maximalist Luxury Header -->
+    <header class="fixed top-0 inset-x-0 z-40 bg-luxury-black/80 backdrop-blur-xl border-b border-gold-accent/20 px-6 lg:px-16 py-5 transition-all">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            
+            <!-- Left Branding & Emblem -->
+            <a href="#" class="flex items-center gap-4 group">
+                <div class="w-12 h-12 rounded-full border border-gold-accent/40 flex items-center justify-center bg-emerald-deep/40 group-hover:border-gold-accent group-hover:scale-110 transition-all duration-500 glow-pulse">
+                    <i class="fa-solid fa-gem text-gold-accent text-lg group-hover:rotate-45 transition-transform duration-500"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-bold text-2xl tracking-[0.25em] text-gold-shimmer">
+                        AURA & LUXE
+                    </span>
+                    <span class="font-italiana text-[10px] tracking-[0.4em] text-gold-glow/70 uppercase">HAUTE JOAILLERIE PARIS & MEXICO</span>
+                </div>
+            </a>
+
+            <!-- Editorial Nav Links -->
+            <nav class="hidden lg:flex items-center gap-12 font-sans text-xs tracking-[0.3em] uppercase text-champagne/80">
+                <a href="#coleccion" class="hover:text-gold-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-accent hover:after:w-full after:transition-all">COLECCIONES</a>
+                <a href="#atelier" class="hover:text-gold-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-accent hover:after:w-full after:transition-all">ATELIER A MEDIDA</a>
+                <a href="#concierge" class="hover:text-gold-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-accent hover:after:w-full after:transition-all">CITA VIP</a>
+                <a href="#manifiesto" class="hover:text-gold-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-accent hover:after:w-full after:transition-all">MANIFIESTO</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-4">
+                <!-- Vault Cart Trigger -->
+                <button onclick="toggleVaultDrawer()" class="relative p-3 rounded-full border border-gold-accent/40 bg-luxury-velvet hover:border-gold-accent text-gold-glow transition-all">
+                    <i class="fa-solid fa-vault text-sm"></i>
+                    <span id="vaultBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-gold-accent text-luxury-black font-sans text-[10px] font-bold rounded-full flex items-center justify-center border border-luxury-black">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Editorial Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-28 px-6 lg:px-16 overflow-hidden">
+        
+        <!-- Geometric Gold & Emerald Accent Ornaments -->
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-emerald-glow/20 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-gold-accent/15 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <!-- Vertical Decorative Text -->
+        <div class="hidden xl:block absolute left-8 top-1/2 -translate-y-1/2 editorial-rotate font-italiana text-xs tracking-[0.5em] text-gold-accent/40 uppercase">
+            EDICIÓN LIMITADA • PIEZAS ÚNICAS NUMERADAS
+        </div>
+        <div class="hidden xl:block absolute right-8 top-1/2 -translate-y-1/2 editorial-rotate font-italiana text-xs tracking-[0.5em] text-gold-accent/40 uppercase">
+            ALTA COSTURA EN GEMAS Y ORO 24K
+        </div>
+
+        <div class="max-w-6xl mx-auto text-center z-10 relative space-y-8">
+
+            <!-- Asymmetrical Bold Headline -->
+            <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-none tracking-tight text-champagne">
+                ESCULTURAS <br/>
+                <span class="font-editorial italic font-normal text-gold-shimmer lowercase text-5xl sm:text-7xl md:text-8xl lg:text-9xl">para el</span>
+                <span class="block mt-2 font-display text-white">CUERPO Y EL ALMA</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto font-editorial text-lg sm:text-2xl text-champagne/80 font-light leading-relaxed italic">
+                “Donde la geometría sagrada del oro puro de 24K colisiona con la profundidad mística de esmeraldas de muzo y diamantes negros de corte imprevisto.”
+            </p>
+
+            <!-- Asymmetrical CTA Grid -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+                <a href="#atelier" class="w-full sm:w-auto px-10 py-5 rounded-full bg-gold-gradient text-luxury-black font-sans font-bold text-xs tracking-[0.3em] uppercase hover:scale-105 transition-all shadow-2xl shadow-gold-accent/20 flex items-center justify-center gap-3">
+                    <span>DISEÑAR PIEZA A MEDIDA</span>
+                    <i class="fa-solid fa-compass-drafting text-xs"></i>
+                </a>
+
+                <a href="#coleccion" class="w-full sm:w-auto px-10 py-5 rounded-full border border-gold-accent/50 bg-luxury-velvet/60 hover:bg-gold-accent/10 text-gold-shimmer font-sans font-medium text-xs tracking-[0.3em] uppercase transition-all flex items-center justify-center gap-3">
+                    <span>EXPLORAR CATÁLOGO</span>
+                    <i class="fa-solid fa-arrow-right-long text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Stats Ribbon -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-16 max-w-4xl mx-auto border-t border-gold-accent/20">
+                <div class="text-center space-y-1">
+                    <span class="font-display text-3xl text-gold-accent">24K</span>
+                    <span class="block font-italiana text-xs text-champagne/60 tracking-widest uppercase">Oro Puro Certificado</span>
+                </div>
+                <div class="text-center space-y-1">
+                    <span class="font-display text-3xl text-gold-shimmer">100%</span>
+                    <span class="block font-italiana text-xs text-champagne/60 tracking-widest uppercase">Gemas de Origen Ético</span>
+                </div>
+                <div class="text-center space-y-1">
+                    <span class="font-display text-3xl text-gold-accent">#001</span>
+                    <span class="block font-italiana text-xs text-champagne/60 tracking-widest uppercase">Series Limitadas</span>
+                </div>
+                <div class="text-center space-y-1">
+                    <span class="font-display text-3xl text-gold-shimmer">PARÍS</span>
+                    <span class="block font-italiana text-xs text-champagne/60 tracking-widest uppercase">Atelier Place Vendôme</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Endless Marquee Banner -->
+    <div class="py-6 bg-emerald-deep/60 border-y border-gold-accent/30 overflow-hidden relative z-20">
+        <div class="marquee-track flex items-center gap-12 font-editorial italic text-2xl text-gold-shimmer whitespace-nowrap">
+            <span>• HAUTE JOAILLERIE • ESMERALDAS COLOMBIANAS • ORO RECICLADO DE 24 KILATES • EDICIONES NUMERADAS DE AUTOR •</span>
+            <span>• HAUTE JOAILLERIE • ESMERALDAS COLOMBIANAS • ORO RECICLADO DE 24 KILATES • EDICIONES NUMERADAS DE AUTOR •</span>
+            <span>• HAUTE JOAILLERIE • ESMERALDAS COLOMBIANAS • ORO RECICLADO DE 24 KILATES • EDICIONES NUMERADAS DE AUTOR •</span>
+        </div>
+    </div>
+
+    <!-- Interactive Bespoke Atelier Customizer Section -->
+    <section id="atelier" class="max-w-7xl mx-auto px-6 lg:px-16 py-28 relative z-10">
+        
+        <div class="text-center space-y-4 mb-16">
+            <span class="font-italiana text-gold-accent tracking-[0.4em] uppercase text-xs">EXPERIENCIA INTERACTIVA EN VIVO</span>
+            <h2 class="font-display text-3xl sm:text-5xl text-champagne tracking-wider">
+                EL ATELIER DE CREACIÓN A MEDIDA
+            </h2>
+            <p class="font-editorial text-xl text-champagne/70 max-w-xl mx-auto italic">
+                Selecciona la gema de tu alma, la geometría de la montura y la alquimia de metal para calcular la cotización estimada instantánea de tu obra de arte.
+            </p>
+        </div>
+
+        <!-- Customizer Studio Grid -->
+        <div class="glass-luxury rounded-3xl p-8 lg:p-12 border border-gold-accent/30 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Dynamic Interactive Visualizer Display -->
+            <div class="lg:col-span-6 flex flex-col items-center justify-center p-8 bg-luxury-black/90 rounded-2xl border border-gold-accent/20 relative overflow-hidden group">
+                
+                <!-- Radiant Backdrop Aura -->
+                <div id="visualizerGlow" class="absolute w-72 h-72 rounded-full blur-3xl opacity-40 transition-all duration-700 bg-emerald-bright"></div>
+
+                <!-- Live Emblem SVG Visual Representation -->
+                <div class="relative z-10 my-8 text-center space-y-6">
+                    <div id="jewelPreviewContainer" class="w-48 h-48 mx-auto rounded-full border-2 border-gold-accent/50 flex items-center justify-center bg-luxury-velvet/80 shadow-2xl relative transition-transform duration-500 hover:scale-105">
+                        <i id="jewelIcon" class="fa-solid fa-ring text-7xl text-gold-shimmer transition-all duration-500"></i>
+                        <div id="gemCenterBadge" class="absolute w-8 h-8 rounded-full bg-emerald-bright border border-white/40 shadow-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500"></div>
+                    </div>
+
+                    <div>
+                        <span id="customTitlePreview" class="font-display text-xl text-gold-shimmer block">ANILLO AURA IMPERIAL</span>
+                        <span id="customDetailsPreview" class="font-italiana text-xs text-champagne/70 tracking-widest block mt-1 uppercase">Oro Amarillo 24K • Esmeralda de Muzo (3.5 ct)</span>
+                    </div>
+
+                    <div class="pt-4 border-t border-gold-accent/20">
+                        <span class="font-sans text-[10px] text-champagne/50 tracking-widest block uppercase">VALOR ESTIMADO DE AUTOR</span>
+                        <span id="customPricePreview" class="font-display text-3xl text-gold-accent block mt-1">$14,500 USD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customizer Controls Interactive Form -->
+            <div class="lg:col-span-6 space-y-8">
+                
+                <!-- Step 1: Select Piece Type -->
+                <div class="space-y-3">
+                    <label class="font-sans text-xs tracking-[0.2em] uppercase text-gold-glow block">1. TIPO DE ESCULTURA</label>
+                    <div class="grid grid-cols-3 gap-3 font-sans text-xs">
+                        <button onclick="updateJewelType('ring', 'Anillo Imperial', 'fa-ring', 4000)" class="jewel-type-btn active p-3 rounded-xl border border-gold-accent bg-gold-accent/20 text-gold-glow text-center hover:border-gold-accent transition-all uppercase">Anillo</button>
+                        <button onclick="updateJewelType('necklace', 'Gargantilla Aura', 'fa-gem', 7500)" class="jewel-type-btn p-3 rounded-xl border border-gold-accent/20 bg-luxury-velvet text-champagne/70 text-center hover:border-gold-accent transition-all uppercase">Gargantilla</button>
+                        <button onclick="updateJewelType('earrings', 'Pendientes Solaria', 'fa-sparkles', 5200)" class="jewel-type-btn p-3 rounded-xl border border-gold-accent/20 bg-luxury-velvet text-champagne/70 text-center hover:border-gold-accent transition-all uppercase">Pendientes</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Gemstone Selection -->
+                <div class="space-y-3">
+                    <label class="font-sans text-xs tracking-[0.2em] uppercase text-gold-glow block">2. GEMA PRINCIPAL DE ORIGEN</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-sans text-xs">
+                        <button onclick="updateGem('emerald', 'Esmeralda de Muzo', '#128360', 6500)" class="gem-btn active p-3 rounded-xl border border-gold-accent bg-emerald-deep text-gold-glow flex flex-col items-center gap-1 transition-all">
+                            <span class="w-4 h-4 rounded-full bg-emerald-bright border border-white/30"></span>
+                            <span>Esmeralda</span>
+                        </button>
+                        <button onclick="updateGem('diamond', 'Diamante Negro', '#222222', 8000)" class="gem-btn p-3 rounded-xl border border-gold-accent/20 bg-luxury-velvet text-champagne/70 flex flex-col items-center gap-1 transition-all">
+                            <span class="w-4 h-4 rounded-full bg-neutral-800 border border-white/30"></span>
+                            <span>D. Negro</span>
+                        </button>
+                        <button onclick="updateGem('sapphire', 'Zafiro Real', '#1E3A8A', 5500)" class="gem-btn p-3 rounded-xl border border-gold-accent/20 bg-luxury-velvet text-champagne/70 flex flex-col items-center gap-1 transition-all">
+                            <span class="w-4 h-4 rounded-full bg-blue-700 border border-white/30"></span>
+                            <span>Zafiro</span>
+                        </button>
+                        <button onclick="updateGem('ruby', 'Rubí Sangre de Paloma', '#991B1B', 7200)" class="gem-btn p-3 rounded-xl border border-gold-accent/20 bg-luxury-velvet text-champagne/70 flex flex-col items-center gap-1 transition-all">
+                            <span class="w-4 h-4 rounded-full bg-red-700 border border-white/30"></span>
+                            <span>Rubí</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Precious Metal -->
+                <div class="space-y-3">
+                    <label class="font-sans text-xs tracking-[0.2em] uppercase text-gold-glow block">3. ALQUIMIA DEL METAL</label>
+                    <div class="grid grid-cols-3 gap-3 font-sans text-xs">
+                        <button onclick="updateMetal('Oro Amarillo 24K', 4000)" class="metal-btn active p-3 rounded-xl border border-gold-accent bg-gold-accent/20 text-gold-glow text-center transition-all uppercase">Oro 24K</button>
+                        <button onclick="updateMetal('Platino Puro 950', 5000)" class="metal-btn p-3 rounded-xl border border-gold-accent/20 bg-luxury-velvet text-champagne/70 text-center transition-all uppercase">Platino</button>
+                        <button onclick="updateMetal('Oro Rosa Champán', 4200)" class="metal-btn p-3 rounded-xl border border-gold-accent/20 bg-luxury-velvet text-champagne/70 text-center transition-all uppercase">Oro Rosa</button>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button onclick="requestBespokeConsultation()" class="w-full py-5 rounded-xl bg-gold-gradient text-luxury-black font-sans font-bold text-xs tracking-[0.3em] uppercase hover:scale-[1.02] transition-all shadow-xl shadow-gold-accent/20">
+                    RESERVAR DISEÑO EXCLUSIVO EN ATELIER
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maximalist Jewelry Collection Catalog -->
+    <section id="coleccion" class="max-w-7xl mx-auto px-6 lg:px-16 py-24 relative z-10">
+        
+        <!-- Header & Category Switchers -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 border-b border-gold-accent/20 pb-8 gap-8">
+            <div class="space-y-2">
+                <span class="font-italiana text-xs text-gold-accent tracking-[0.4em] uppercase block">GALERÍA DE ESCULTURAS</span>
+                <h2 class="font-display text-3xl sm:text-5xl text-champagne tracking-wider">
+                    OBRAS Y PIEZAS NUMERADAS
+                </h2>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-3 font-sans text-xs">
+                <button onclick="filterCatalog('all')" class="cat-filter active px-5 py-2.5 rounded-full border border-gold-accent bg-gold-accent/20 text-gold-shimmer font-bold uppercase tracking-widest transition-all" data-cat="all">TODAS</button>
+                <button onclick="filterCatalog('anillos')" class="cat-filter px-5 py-2.5 rounded-full border border-gold-accent/20 bg-luxury-velvet text-champagne/70 hover:border-gold-accent uppercase tracking-widest transition-all" data-cat="anillos">ANILLOS</button>
+                <button onclick="filterCatalog('gargantillas')" class="cat-filter px-5 py-2.5 rounded-full border border-gold-accent/20 bg-luxury-velvet text-champagne/70 hover:border-gold-accent uppercase tracking-widest transition-all" data-cat="gargantillas">GARGANTILLAS</button>
+                <button onclick="filterCatalog('pendientes')" class="cat-filter px-5 py-2.5 rounded-full border border-gold-accent/20 bg-luxury-velvet text-champagne/70 hover:border-gold-accent uppercase tracking-widest transition-all" data-cat="pendientes">PENDIENTES</button>
+            </div>
+        </div>
+
+        <!-- Catalog Items Grid -->
+        <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Dynamically populated via JS -->
+        </div>
+    </section>
+
+    <!-- VIP Concierge & Salon Reservation -->
+    <section id="concierge" class="max-w-7xl mx-auto px-6 lg:px-16 py-28 relative z-10">
+        <div class="glass-luxury rounded-3xl p-8 lg:p-16 relative overflow-hidden border border-gold-accent/30 bg-luxury-obsidian/90">
+            
+            <!-- Glow Accent -->
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-emerald-bright/20 rounded-full blur-[160px] pointer-events-none"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="font-italiana text-xs text-gold-accent tracking-[0.4em] uppercase block">ATENCIÓN PRIVADA DE AUTOR</span>
+                    <h2 class="font-display text-3xl sm:text-5xl text-champagne leading-tight">
+                        CITA EN EL SALÓN PRIVADO DE AURA
+                    </h2>
+                    <p class="font-editorial text-lg text-champagne/80 font-light leading-relaxed">
+                        Experimente la alta joyería en privado con degustación de champán de añada y la presencia de nuestros maestros gemólogos.
+                    </p>
+
+                    <div class="space-y-4 pt-4 font-sans text-xs text-champagne/80">
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full border border-gold-accent/40 flex items-center justify-center text-gold-accent">
+                                <i class="fa-solid fa-champagne-glasses text-xs"></i>
+                            </div>
+                            <span>Cata privada de champán & maridaje de autor</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full border border-gold-accent/40 flex items-center justify-center text-gold-accent">
+                                <i class="fa-solid fa-shield-halved text-xs"></i>
+                            </div>
+                            <span>Acceso confidencial a bóveda de gemas sin tallar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unconventional Form -->
+                <div class="lg:col-span-7 bg-luxury-black/95 p-8 sm:p-10 rounded-2xl border border-gold-accent/30 shadow-2xl space-y-6">
+                    <form id="conciergeForm" onsubmit="handleConciergeSubmit(event)" class="space-y-6">
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="font-sans text-[10px] tracking-[0.25em] text-gold-glow uppercase block">NOMBRE COMPLETO / TÍTULO</label>
+                                <input type="text" required placeholder="Ej. Baronesa Elena de Alva" class="w-full bg-luxury-velvet border border-gold-accent/30 rounded-xl px-5 py-4 text-xs text-champagne placeholder-champagne/30 focus:outline-none focus:border-gold-accent transition-colors">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="font-sans text-[10px] tracking-[0.25em] text-gold-glow uppercase block">CORREO DE CONTACTO PRIVADO</label>
+                                <input type="email" required placeholder="elena@aura-luxe.com" class="w-full bg-luxury-velvet border border-gold-accent/30 rounded-xl px-5 py-4 text-xs text-champagne placeholder-champagne/30 focus:outline-none focus:border-gold-accent transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div class="space-y-2">
+                                <label class="font-sans text-[10px] tracking-[0.25em] text-gold-glow uppercase block">FECHA DESEADA</label>
+                                <input type="date" required class="w-full bg-luxury-velvet border border-gold-accent/30 rounded-xl px-5 py-4 text-xs text-champagne focus:outline-none focus:border-gold-accent transition-colors">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="font-sans text-[10px] tracking-[0.25em] text-gold-glow uppercase block">SEDE PRINCIPAL</label>
+                                <select required class="w-full bg-luxury-velvet border border-gold-accent/30 rounded-xl px-5 py-4 text-xs text-champagne focus:outline-none focus:border-gold-accent transition-colors">
+                                    <option value="paris">Salón Place Vendôme (París)</option>
+                                    <option value="cdmx">Salón Polanco (Ciudad de México)</option>
+                                    <option value="virtual">Consulta Virtual Confidencial</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="font-sans text-[10px] tracking-[0.25em] text-gold-glow uppercase block">INTERÉS PRINCIPAL</label>
+                                <select required class="w-full bg-luxury-velvet border border-gold-accent/30 rounded-xl px-5 py-4 text-xs text-champagne focus:outline-none focus:border-gold-accent transition-colors">
+                                    <option value="coleccion">Pieza de Colección</option>
+                                    <option value="bespoke">Atelier Bespoke desde Cero</option>
+                                    <option value="inversion">Inversión en Esmeraldas Muzo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full py-5 rounded-xl bg-gold-gradient text-luxury-black font-sans font-bold text-xs tracking-[0.3em] uppercase hover:scale-[1.01] transition-all shadow-2xl shadow-gold-accent/20">
+                            SOLICITAR INVITACIÓN AL SALÓN PRIVADO
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Product Detail Modal -->
+    <div id="productModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-xl hidden transition-opacity">
+        <div class="glass-luxury w-full max-w-3xl rounded-3xl border border-gold-accent/40 p-8 relative overflow-hidden bg-luxury-obsidian">
+            <button onclick="closeProductModal()" class="absolute top-6 right-6 w-10 h-10 rounded-full border border-gold-accent/40 bg-luxury-velvet flex items-center justify-center text-champagne/80 hover:text-gold-accent transition-all">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="relative rounded-2xl overflow-hidden border border-gold-accent/30 bg-luxury-velvet h-80">
+                    <img id="modalProductImg" src="" alt="" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-luxury-black via-transparent to-transparent"></div>
+                </div>
+
+                <div class="space-y-5">
+                    <div>
+                        <span id="modalProductCode" class="font-italiana text-xs tracking-widest text-gold-accent uppercase block">EDICIÓN #001</span>
+                        <h3 id="modalProductTitle" class="font-display text-2xl text-champagne mt-1">Título de la Pieza</h3>
+                        <span id="modalProductPrice" class="font-display text-xl text-gold-shimmer block mt-2">$0 USD</span>
+                    </div>
+
+                    <p id="modalProductDesc" class="font-editorial text-base text-champagne/80 font-light leading-relaxed">Descripción detallada de la pieza de autor.</p>
+
+                    <div>
+                        <span class="font-sans text-[10px] tracking-widest text-gold-glow block uppercase mb-2">ESPECIFICACIONES DE AUTOR:</span>
+                        <div id="modalProductSpecs" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <button id="modalProductVaultBtn" class="w-full py-4 rounded-xl bg-gold-gradient text-luxury-black font-sans font-bold text-xs tracking-[0.3em] uppercase hover:scale-[1.02] transition-all">
+                        AÑADIR A MI BÓVEDA PRIVADA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vault Shopping Drawer -->
+    <div id="vaultDrawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-luxury-obsidian border-l border-gold-accent/30 p-8 shadow-2xl transform translate-x-full transition-transform duration-500 flex flex-col">
+        <div class="flex items-center justify-between border-b border-gold-accent/20 pb-6 mb-6">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-vault text-gold-accent text-lg"></i>
+                <h3 class="font-display text-lg text-champagne tracking-wider">BÓVEDA DE SELECCIÓN</h3>
+            </div>
+            <button onclick="toggleVaultDrawer()" class="w-8 h-8 rounded-full border border-gold-accent/30 flex items-center justify-center text-champagne/70 hover:text-white">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+        </div>
+
+        <div id="vaultItemsList" class="flex-1 overflow-y-auto space-y-4 pr-1"></div>
+
+        <div class="border-t border-gold-accent/20 pt-6 mt-6 space-y-4">
+            <div class="space-y-2 font-sans text-xs">
+                <div class="flex justify-between text-champagne/60">
+                    <span>VALOR DE PIEZAS</span>
+                    <span id="vaultSubtotal" class="text-champagne">$0 USD</span>
+                </div>
+                <div class="flex justify-between text-champagne/60">
+                    <span>ENVÍO BLINDADO INTERNACIONAL</span>
+                    <span class="text-gold-accent">CORTESÍA</span>
+                </div>
+                <div class="flex justify-between text-base font-display text-gold-shimmer pt-3 border-t border-gold-accent/10">
+                    <span>INVERSIÓN TOTAL</span>
+                    <span id="vaultTotal">$0 USD</span>
+                </div>
+            </div>
+
+            <button onclick="checkoutVault()" class="w-full py-5 rounded-xl bg-gold-gradient text-luxury-black font-sans font-bold text-xs tracking-[0.3em] uppercase hover:scale-[1.01] transition-all">
+                SOLICITAR ADQUISICIÓN CONFIDENCIAL
+            </button>
+        </div>
+    </div>
+
+    <!-- Luxury Footer -->
+    <footer class="border-t border-gold-accent/20 py-16 px-6 lg:px-16 bg-luxury-black text-champagne/50 font-sans text-xs z-10 relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-4">
+                <span class="font-display text-xl text-gold-shimmer">AURA & LUXE</span>
+                <span class="text-gold-accent/40">|</span>
+                <span class="font-italiana text-xs tracking-widest text-champagne/70">HAUTE JOAILLERIE PARIS & MEXICO</span>
+            </div>
+
+            <div class="flex flex-wrap gap-8 font-italiana text-xs tracking-widest text-champagne/80 uppercase">
+                <a href="#" class="hover:text-gold-accent transition-colors">CERTIFICADOS GIA</a>
+                <a href="#" class="hover:text-gold-accent transition-colors">POLÍTICA DE ESMERALDAS ÉTICAS</a>
+                <a href="#" class="hover:text-gold-accent transition-colors">PRENSA INTERNACIONAL</a>
+            </div>
+
+            <div class="font-sans text-[10px] tracking-widest text-champagne/40 uppercase">
+                © 2026 AURA & LUXE MAISON DE HAUTE JOAILLERIE. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ----------------------------------------------------
+           Catalog Database
+        ---------------------------------------------------- */
+        const JEWELRY_CATALOG = [
+            {
+                id: "AURA-001",
+                title: "Anillo Esmeralda Imperial Muzo",
+                category: "anillos",
+                price: 18500,
+                desc: "Esmeralda verde gota de aceite de 4.2 kilates sobre arquitectura de oro amarillo reciclado de 24K y micro pavé de diamantes negros.",
+                specs: ["Esmeralda Muzo 4.2ct", "Oro Amarillo 24K", "Diamantes Negros Pavé"],
+                img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "AURA-002",
+                title: "Gargantilla Solaria Solsticio",
+                category: "gargantillas",
+                price: 32000,
+                desc: "Pieza de autor articulada con 18 diamantes corte baguette y un rubí central 'Sangre de Paloma' de origen birmano certificado.",
+                specs: ["Rubí Birmano 3.8ct", "Platino Puro 950", "Diamantes Baguette GIA"],
+                img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "AURA-003",
+                title: "Pendientes Cascada Nuit",
+                category: "pendientes",
+                price: 14200,
+                desc: "Gotas de zafiro real azul profundo engastadas en garras invisibles de oro rosa champán con destellos de diamantes corte rosa.",
+                specs: ["Zafiros Reales 5.1ct", "Oro Rosa 18K", "Corte Rosa Antiguo"],
+                img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "AURA-004",
+                title: "Anillo Geometría de Obsidiana",
+                category: "anillos",
+                price: 12800,
+                desc: "Sello maximalista tallado en oro cepillado de 24K con diamante negro central de 3.0ct en corte marquesa imprevisto.",
+                specs: ["Diamante Negro 3.0ct", "Oro Cepillado 24K", "Edición Limitada #03"],
+                img: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "AURA-005",
+                title: "Gargantilla Serpiente Mística",
+                category: "gargantillas",
+                price: 29500,
+                desc: "Estructura flexible que abraza el cuello, escamada con micro esmeraldas Muzo y ojos de rubíes naturales incandescentes.",
+                specs: ["Micro Esmeraldas 6.0ct", "Ojos Rubí Natural", "Diseño Articulado"],
+                img: "https://images.unsplash.com/photo-1611591475193-4122d250fa89?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "AURA-006",
+                title: "Pendientes Halo de Luz Vénus",
+                category: "pendientes",
+                price: 16800,
+                desc: "Círculos concéntricos de platino con diamantes de talla brillante suprema que capturan y reflejan la luz ambiente.",
+                specs: ["Diamantes Talla Brillante", "Platino 950", "Cierre de Seguridad VIP"],
+                img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        /* Application State */
+        let vault = [];
+        let activeCatalogCategory = 'all';
+        let audioCtx = null;
+
+        /* Customizer State */
+        let customizerState = {
+            type: 'Anillo',
+            title: 'Anillo Aura Imperial',
+            icon: 'fa-ring',
+            typePrice: 4000,
+            gem: 'Esmeralda de Muzo',
+            gemColor: '#128360',
+            gemPrice: 6500,
+            metal: 'Oro Amarillo 24K',
+            metalPrice: 4000
+        };
+
+        /* ----------------------------------------------------
+           Dynamic Mouse Spotlight Logic
+        ---------------------------------------------------- */
+        window.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
+        });
+
+        /* ----------------------------------------------------
+           Initialization & Global Gem Sound Interaction
+        ---------------------------------------------------- */
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCatalogGrid();
+            updateCustomizerUI();
+
+            // Automatic crystal gem chime on clicking any interactive element
+            document.addEventListener('click', (e) => {
+                const target = e.target.closest('button, a, input, select, .glass-card-hover, [role="button"]');
+                if (target) {
+                    playGemChimeSound();
+                }
+            });
+        });
+
+        /* ----------------------------------------------------
+           Catalog Filtering & Rendering
+        ---------------------------------------------------- */
+        function renderCatalogGrid() {
+            const grid = document.getElementById('catalogGrid');
+            grid.innerHTML = '';
+
+            const filtered = activeCatalogCategory === 'all' 
+                ? JEWELRY_CATALOG 
+                : JEWELRY_CATALOG.filter(item => item.category === activeCatalogCategory);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'glass-luxury glass-card-hover rounded-2xl overflow-hidden flex flex-col group border border-gold-accent/20 bg-luxury-obsidian/80';
+
+                card.innerHTML = `
+                    <div class="relative h-72 overflow-hidden bg-luxury-velvet">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-luxury-black via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute top-4 left-4 font-italiana text-[10px] tracking-widest text-gold-accent px-3 py-1 rounded-full border border-gold-accent/40 bg-luxury-black/80 backdrop-blur-md uppercase">
+                            ${item.id}
+                        </div>
+                        <button onclick="openProductModal('${item.id}')" class="absolute bottom-4 right-4 w-10 h-10 rounded-full border border-gold-accent/40 bg-luxury-black/80 text-champagne hover:text-gold-accent hover:border-gold-accent flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-display text-lg text-champagne group-hover:text-gold-shimmer transition-colors">${item.title}</h3>
+                            <p class="font-editorial text-xs text-champagne/70 line-clamp-2 mt-2 leading-relaxed font-light">${item.desc}</p>
+                        </div>
+
+                        <div class="pt-4 border-t border-gold-accent/15 flex items-center justify-between">
+                            <div>
+                                <span class="font-sans text-[9px] text-champagne/40 uppercase block tracking-widest">INVERSIÓN</span>
+                                <span class="font-display text-base text-gold-accent">$${item.price.toLocaleString()} USD</span>
+                            </div>
+
+                            <button onclick="addToVault('${item.id}')" class="px-5 py-2.5 rounded-full bg-luxury-velvet hover:bg-gold-accent text-champagne hover:text-luxury-black border border-gold-accent/30 text-xs font-sans tracking-widest uppercase font-bold transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>BÓVEDA</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCatalog(category) {
+            activeCatalogCategory = category;
+
+            document.querySelectorAll('.cat-filter').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.classList.add('border-gold-accent', 'bg-gold-accent/20', 'text-gold-shimmer', 'font-bold');
+                    btn.classList.remove('border-gold-accent/20', 'bg-luxury-velvet', 'text-champagne/70');
+                } else {
+                    btn.classList.remove('border-gold-accent', 'bg-gold-accent/20', 'text-gold-shimmer', 'font-bold');
+                    btn.classList.add('border-gold-accent/20', 'bg-luxury-velvet', 'text-champagne/70');
+                }
+            });
+
+            renderCatalogGrid();
+        }
+
+        /* ----------------------------------------------------
+           Bespoke Customizer Logic
+        ---------------------------------------------------- */
+        function updateJewelType(typeKey, name, icon, basePrice) {
+            customizerState.type = name;
+            customizerState.title = `${name} Aura Custom`;
+            customizerState.icon = icon;
+            customizerState.typePrice = basePrice;
+
+            document.querySelectorAll('.jewel-type-btn').forEach(btn => btn.classList.remove('active', 'border-gold-accent', 'bg-gold-accent/20', 'text-gold-glow'));
+            event.currentTarget.classList.add('active', 'border-gold-accent', 'bg-gold-accent/20', 'text-gold-glow');
+
+            updateCustomizerUI();
+        }
+
+        function updateGem(gemKey, gemName, colorHex, gemPrice) {
+            customizerState.gem = gemName;
+            customizerState.gemColor = colorHex;
+            customizerState.gemPrice = gemPrice;
+
+            document.querySelectorAll('.gem-btn').forEach(btn => btn.classList.remove('active', 'border-gold-accent', 'bg-emerald-deep', 'text-gold-glow'));
+            event.currentTarget.classList.add('active', 'border-gold-accent', 'text-gold-glow');
+
+            updateCustomizerUI();
+        }
+
+        function updateMetal(metalName, metalPrice) {
+            customizerState.metal = metalName;
+            customizerState.metalPrice = metalPrice;
+
+            document.querySelectorAll('.metal-btn').forEach(btn => btn.classList.remove('active', 'border-gold-accent', 'bg-gold-accent/20', 'text-gold-glow'));
+            event.currentTarget.classList.add('active', 'border-gold-accent', 'bg-gold-accent/20', 'text-gold-glow');
+
+            updateCustomizerUI();
+        }
+
+        function updateCustomizerUI() {
+            const totalPrice = customizerState.typePrice + customizerState.gemPrice + customizerState.metalPrice;
+
+            document.getElementById('jewelIcon').className = `fa-solid ${customizerState.icon} text-7xl text-gold-shimmer transition-all duration-500`;
+            document.getElementById('gemCenterBadge').style.backgroundColor = customizerState.gemColor;
+            document.getElementById('visualizerGlow').style.backgroundColor = customizerState.gemColor;
+
+            document.getElementById('customTitlePreview').innerText = customizerState.title.toUpperCase();
+            document.getElementById('customDetailsPreview').innerText = `${customizerState.metal} • ${customizerState.gem}`;
+            document.getElementById('customPricePreview').innerText = `$${totalPrice.toLocaleString()} USD`;
+        }
+
+        function requestBespokeConsultation() {
+            showToast(`Solicitud de diseño enviada: ${customizerState.title}`);
+        }
+
+        /* ----------------------------------------------------
+           Vault & Cart Logic
+        ---------------------------------------------------- */
+        function addToVault(productId) {
+            const product = JEWELRY_CATALOG.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = vault.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                vault.push({ ...product, quantity: 1 });
+            }
+
+            updateVaultUI();
+            showToast(`Añadido a bóveda: ${product.title}`);
+        }
+
+        function updateVaultQuantity(productId, change) {
+            const item = vault.find(i => i.id === productId);
+            if (!item) return;
+
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                vault = vault.filter(i => i.id !== productId);
+            }
+            updateVaultUI();
+        }
+
+        function updateVaultUI() {
+            const list = document.getElementById('vaultItemsList');
+            const badge = document.getElementById('vaultBadge');
+            list.innerHTML = '';
+
+            let totalItems = 0;
+            let subtotal = 0;
+
+            if (vault.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-16 text-champagne/40 font-editorial text-base italic">
+                        <i class="fa-solid fa-vault text-3xl mb-3 text-gold-accent/30 block"></i>
+                        <span>Su bóveda de alta joyería se encuentra vacía</span>
+                    </div>
+                `;
+            } else {
+                vault.forEach(item => {
+                    totalItems += item.quantity;
+                    subtotal += item.price * item.quantity;
+
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center justify-between p-4 rounded-xl bg-luxury-velvet border border-gold-accent/20';
+                    div.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover border border-gold-accent/20">
+                            <div>
+                                <div class="font-display text-xs text-champagne">${item.title}</div>
+                                <div class="font-sans text-[11px] text-gold-accent mt-0.5">$${item.price.toLocaleString()} USD</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 font-sans text-xs">
+                            <button onclick="updateVaultQuantity('${item.id}', -1)" class="w-6 h-6 rounded-full border border-gold-accent/30 flex items-center justify-center text-champagne hover:text-white">-</button>
+                            <span class="w-4 text-center text-white font-bold">${item.quantity}</span>
+                            <button onclick="updateVaultQuantity('${item.id}', 1)" class="w-6 h-6 rounded-full border border-gold-accent/30 flex items-center justify-center text-champagne hover:text-white">+</button>
+                        </div>
+                    `;
+                    list.appendChild(div);
+                });
+            }
+
+            badge.innerText = totalItems;
+            document.getElementById('vaultSubtotal').innerText = `$${subtotal.toLocaleString()} USD`;
+            document.getElementById('vaultTotal').innerText = `$${subtotal.toLocaleString()} USD`;
+        }
+
+        function toggleVaultDrawer() {
+            document.getElementById('vaultDrawer').classList.toggle('translate-x-full');
+        }
+
+        function checkoutVault() {
+            if (vault.length === 0) {
+                showToast('Añada esculturas a su bóveda primero');
+                return;
+            }
+
+            vault = [];
+            updateVaultUI();
+            toggleVaultDrawer();
+            showToast('Solicitud recibida. Su concierge se pondrá en contacto encriptado.');
+        }
+
+        /* ----------------------------------------------------
+           Modal Display Logic
+        ---------------------------------------------------- */
+        function openProductModal(productId) {
+            const product = JEWELRY_CATALOG.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modalProductImg').src = product.img;
+            document.getElementById('modalProductTitle').innerText = product.title;
+            document.getElementById('modalProductPrice').innerText = `$${product.price.toLocaleString()} USD`;
+            document.getElementById('modalProductDesc').innerText = product.desc;
+            document.getElementById('modalProductCode').innerText = product.id;
+
+            const specsContainer = document.getElementById('modalProductSpecs');
+            specsContainer.innerHTML = '';
+            product.specs.forEach(spec => {
+                const badge = document.createElement('span');
+                badge.className = 'font-sans text-[10px] tracking-widest px-3 py-1 rounded-full border border-gold-accent/30 bg-luxury-velvet text-gold-glow uppercase';
+                badge.innerText = spec;
+                specsContainer.appendChild(badge);
+            });
+
+            const btn = document.getElementById('modalProductVaultBtn');
+            btn.onclick = () => {
+                addToVault(product.id);
+                closeProductModal();
+            };
+
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        function handleConciergeSubmit(e) {
+            e.preventDefault();
+            showToast('Invitación reservada con éxito. Confirmación confidencial enviada.');
+            e.target.reset();
+        }
+
+        /* ----------------------------------------------------
+           Notifications & Ethereal Gem Synthesizer
+        ---------------------------------------------------- */
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'px-6 py-4 rounded-xl bg-luxury-obsidian border border-gold-accent/50 text-gold-shimmer font-sans text-xs flex items-center gap-3 shadow-2xl transition-all duration-300 transform translate-y-2 pointer-events-auto';
+            toast.innerHTML = `
+                <i class="fa-solid fa-gem text-gold-accent"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        /* Ethereal Precious Gem Crystal Resonance Synthesizer */
+        function playGemChimeSound() {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+
+                if (!audioCtx) {
+                    audioCtx = new AudioCtx();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                const now = audioCtx.currentTime;
+
+                // Harmonic crystalline notes corresponding to precious gems (Esmeralda, Diamante, Zafiro, Rubí)
+                const gemChords = [
+                    [1318.51, 1975.53, 2637.02], // Diamante (Resonancia E6, B6, E7)
+                    [1046.50, 1567.98, 2093.00], // Esmeralda (Harmónicos C6, G6, C7)
+                    [1174.66, 1760.00, 2349.32], // Zafiro (Harmónicos D6, A6, D7)
+                    [1396.91, 1760.00, 2793.83]  // Rubí (Harmónicos F6, A6, F7)
+                ];
+
+                const selectedChord = gemChords[Math.floor(Math.random() * gemChords.length)];
+
+                selectedChord.forEach((freq, index) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+
+                    // Pure Sine + subtle Triangle for glass crystal shimmer
+                    osc.type = index === 0 ? 'sine' : 'triangle';
+                    osc.frequency.setValueAtTime(freq, now);
+
+                    // Delicate crystalline resonance envelope
+                    const volume = index === 0 ? 0.05 : 0.025;
+                    gain.gain.setValueAtTime(0.001, now);
+                    gain.gain.exponentialRampToValueAtTime(volume, now + 0.012);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.75 + (index * 0.1));
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start(now + (index * 0.025)); // Cascade delay for crystalline shimmer
+                    osc.stop(now + 0.9 + (index * 0.1));
+                });
+            } catch (e) {
+                // Ignore audio context autoplay restrictions gracefully
+            }
+        }
+    </script>
+</body>
+</html>
